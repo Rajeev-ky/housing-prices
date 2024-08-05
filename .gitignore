@@ -8,3 +8,5 @@
 *Rproj
 *_site/
 *.R
+*_cache/
+*_files/

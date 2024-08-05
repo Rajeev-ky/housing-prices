@@ -1,5 +1,72 @@
 ---
 title: "Housing-prices"
+execute: 
+  echo: false
 ---
 
+
+Using the housing dataset from kaggle, we are interested in how preferred area influences the prices of the housing. Since the dataset was downloaded from kaggle, we have concerns that the dataset may be baised. 
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(brms)
+library(gtsummary)
+library(tidybayes)
+
+housing <- read_csv("data/housing.csv", show_col_types = FALSE)
+
+housing_ppf <- housing |> select(price, prefarea, furnishingstatus)
+```
+
+
+```{r}
+#| label: model
+#| cache: true
+
+fit1 <- brm(formula = price ~ prefarea + furnishingstatus,
+            data = housing_ppf,
+            family = gaussian(),
+            refresh = 0,
+            silent = 2,
+            seed = 9
+            )
+
+```
+
+
+```{r}
+#| label: plot
+
+ndata <- tibble(expand.grid(prefarea = c("yes", "no"), furnishingstatus = c("furnished", "semi-furnished", "unfurnished")))
+
+fit1 |> add_epred_draws(newdata = ndata) |> ungroup() |>
+  select(prefarea, furnishingstatus, .epred) |>
+  ggplot(aes(x = .epred, y = factor(furnishingstatus, levels = c("unfurnished", "semi-furnished", "furnished"), ordered = TRUE))) +
+  stat_slab(aes(fill = prefarea), position = "dodge") +
+  scale_y_discrete(expand = expansion(mult = c(0.1, 0.4))) +
+  scale_x_continuous(labels = scales::dollar_format(scale = 1/1000000, suffix = "M"), breaks = c(1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000)) +
+  labs(
+    title = "Expected Price given Preferred Area",
+    subtitle = "Preferred area is likely to fetch $1.3M higher ",
+    x = "Expected Price",
+    y = NULL,
+    fill = "Preferred Area"
+    )
+
+
+```
+
+
+
+$$housing\_price = \beta_{0} + \beta_{1} prefareayes_i - 
+\beta_{2}furnishingstatussemiMfurnished_i - \beta_{3}furnishingstatusfurnished_i + \epsilon_{i}$$
+
+```{r}
+#| label: regression-table
+
+tbl_regression(fit1)
+```
 

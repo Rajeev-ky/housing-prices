@@ -56,11 +56,3 @@ fit1 |> add_epred_draws(newdata = ndata) |> ungroup() |>
 
 ```
 
-$$housing\_price = \beta_{0} + \beta_{1} prefareayes_i - 
-\beta_{2}furnishingstatussemiMfurnished_i - \beta_{3}furnishingstatusfurnished_i + \epsilon_{i}$$
-
-```{r}
-#| label: regression-table
-
-tbl_regression(fit1)
-```

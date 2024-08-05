@@ -4,8 +4,7 @@ execute:
   echo: false
 ---
 
-
-Using the housing dataset from kaggle, we are interested in how preferred area influences the prices of the housing. Since the dataset was downloaded from kaggle, we have concerns that the dataset may be baised. 
+we are interested in how preferred area and furnishing status of the housing influences the prices of the housing. The housing dataset was downloaded from kaggle, however we have concerns that the dataset may be biased. Only three variables of the thirteen variables from the dataset viz. price, preferred area and furnishing status are considered for this analysis. We have modeled price of the housing with preferred area and furnishing status using linear regression. Preferred area is likely to fetch higher value by 1 million with negative adjustment for unfurnished or semi-furnished housing.
 
 ```{r}
 #| label: setup
@@ -21,7 +20,6 @@ housing <- read_csv("data/housing.csv", show_col_types = FALSE)
 housing_ppf <- housing |> select(price, prefarea, furnishingstatus)
 ```
 
-
 ```{r}
 #| label: model
 #| cache: true
@@ -35,7 +33,6 @@ fit1 <- brm(formula = price ~ prefarea + furnishingstatus,
             )
 
 ```
-
 
 ```{r}
 #| label: plot
@@ -59,8 +56,6 @@ fit1 |> add_epred_draws(newdata = ndata) |> ungroup() |>
 
 ```
 
-
-
 $$housing\_price = \beta_{0} + \beta_{1} prefareayes_i - 
 \beta_{2}furnishingstatussemiMfurnished_i - \beta_{3}furnishingstatusfurnished_i + \epsilon_{i}$$
 
@@ -69,4 +64,3 @@ $$housing\_price = \beta_{0} + \beta_{1} prefareayes_i -
 
 tbl_regression(fit1)
 ```
-

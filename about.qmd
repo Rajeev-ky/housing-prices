@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this site
+Hi ! I am Rajeev Kumar Yadav interested in data science work. You can visit my [Github-account](https://github.com/Rajeev-ky) for my other projects. Reach me out at kool11yadav\@gmail.com.
+
+This project analyses housing prices given the preferred area and funishing status.The data was downloaded from kaggle and has information for 545 housing prices based on different parameters. Data can be reached [here](https://www.kaggle.com/datasets/yasserh/housing-prices-dataset). I have tried to analyse how the price of the housing differs based on preferred area and furnishing status.
+
+This project was created as a part of Kane’s [Data Science Bootcamp](https://bootcamp.davidkane.info/).

@@ -1,0 +1,39 @@
+---
+title: "Model"
+execute: 
+  echo: false
+---
+
+We have created a linear regression model where estimated price is the outcome of prefarea and furnishing status of the housing. The mathematical model is 
+
+$$housing\_price = \beta_{0} + \beta_{1} prefareayes_i - 
+\beta_{2}furnishingstatussemiMfurnished_i - \beta_{3}furnishingstatusfurnished_i + \epsilon_{i}$$
+
+Below table summaries the regression coefficients of the model
+
+```{r}
+#| label: code
+#| message: false
+#| cache: true
+
+library(tidyverse)
+library(brms)
+library(gtsummary)
+library(tidybayes)
+
+housing <- read_csv("data/housing.csv", show_col_types = FALSE)
+
+housing_ppf <- housing |> select(price, prefarea, furnishingstatus)
+
+fit1 <- brm(formula = price ~ prefarea + furnishingstatus,
+            data = housing_ppf,
+            family = gaussian(),
+            refresh = 0,
+            silent = 2,
+            seed = 9
+            )
+
+tbl_regression(fit1)
+
+```
+

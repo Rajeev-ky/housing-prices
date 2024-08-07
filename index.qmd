@@ -1,10 +1,10 @@
 ---
-title: "Housing-prices"
+title: "Housing Prices"
 execute: 
   echo: false
 ---
 
-we are interested in how preferred area and furnishing status of the housing influences the prices of the housing. The housing dataset was downloaded from kaggle, however we have concerns that the dataset may be biased. Only three variables of the thirteen variables from the dataset viz. price, preferred area and furnishing status are considered for this analysis. We have modeled price of the housing with preferred area and furnishing status using linear regression. Preferred area is likely to fetch higher value by 1 million with negative adjustment for unfurnished or semi-furnished housing.
+It is interesting to see how preferred area influences the housing prices  over furnishing status of the housing. The housing data was downloaded from kaggle. Only three variables of the thirteen variables from the data viz. Price, Preferred area and Furnishing status are considered for this analysis. We have modeled price of the housing with preferred area and furnishing status using linear regression. Preferred area is likely to fetch higher value by $1.3 million with negative adjustment for unfurnished or semi-furnished housing.
 
 ```{r}
 #| label: setup

@@ -4,7 +4,7 @@ execute:
   echo: false
 ---
 
-We have created a linear regression model where estimated price is the outcome of prefarea and furnishing status of the housing. The mathematical model is 
+We have created a linear regression model where estimated price is the outcome of preferred area and furnishing status of the housing. The mathematical model is 
 
 $$housing\_price = \beta_{0} + \beta_{1} prefareayes_i - 
 \beta_{2}furnishingstatussemiMfurnished_i - \beta_{3}furnishingstatusfurnished_i + \epsilon_{i}$$

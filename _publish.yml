@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: c95f3c5a-4877-46bb-935d-93482d632493
+      url: 'https://rajeev-ky.quarto.pub/housing-prices'

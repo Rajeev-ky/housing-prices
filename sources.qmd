@@ -1,0 +1,5 @@
+---
+title: "Sources"
+---
+
+The data for this work was downloaded from kaggle. It consists of 545 observations and 13 columns. Three of the columns namely price, preferred area and furnishing status was considered for this analysis.
